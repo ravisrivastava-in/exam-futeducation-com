@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon | Future Education Exams</title>
+    
+    <link rel="icon" href="https://neet.futeducation.com/assets/img/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="https://neet.futeducation.com/assets/img/favicon.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="https://neet.futeducation.com/assets/img/hero-carousel/neet-futeducation.png" sizes="180x180">
+    <meta name="theme-color" content="#1a6fc4">
+    <meta name="msapplication-TileColor" content="#1a6fc4">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Raleway:wght@600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* Provided Variables */
+        :root {
+            /* Fonts */
+            --default-font: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+            --heading-font: "Raleway", sans-serif;
+            --nav-font: "Poppins", sans-serif;
+
+            /* Global Colors */
+            --background-color: #ffffff;
+            --default-color: #444444;
+            --heading-color: #556270;
+            --accent-color: #d9232d;
+            --surface-color: #ffffff;
+            --contrast-color: #ffffff;
+
+            /* Nav Menu Colors */
+            --nav-color: #556270;
+            --nav-hover-color: #d9232d;
+            --nav-mobile-background-color: #ffffff;
+            --nav-dropdown-background-color: #ffffff;
+            --nav-dropdown-color: #556270;
+            --nav-dropdown-hover-color: #d9232d;
+        }
+
+        /* Base Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--default-font);
+            background-color: var(--background-color);
+            color: var(--default-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--heading-font);
+            color: var(--heading-color);
+            margin: 0;
+        }
+
+        /* GLOBAL LINKS */
+        body a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        body a:hover {
+            color: #b91d26;
+            text-decoration: none;
+        }
+
+        /* Header / Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            background: var(--surface-color);
+        }
+
+        .logo img {
+            max-height: 50px; /* Adjust this value if your logo needs to be larger/smaller */
+            width: auto;
+            display: block;
+        }
+
+        nav a {
+            font-family: var(--nav-font);
+            color: var(--nav-color);
+            margin-left: 20px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: var(--nav-hover-color);
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .badge {
+            background-color: rgba(217, 35, 45, 0.1);
+            color: var(--accent-color);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .exams-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .exam-tag {
+            background: var(--surface-color);
+            border: 1px solid #e0e0e0;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            color: var(--heading-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        /* Footer */
+        footer {
+            background: #f9f9f9;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .contact-info div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .developer-credit {
+            font-size: 12px;
+            margin-top: 15px;
+            color: #777;
+        }
+        
+        .developer-credit a {
+            color: #777;
+            text-decoration: underline;
+        }
+        
+        .developer-credit a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            h1 {
+                font-size: 36px;
+            }
+            nav a {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="https://exam.futeducation.com" class="logo">
+            <img src="https://neet.futeducation.com/assets/img/logo.png" alt="Future Education Logo">
+        </a>
+        <nav>
+            <a href="https://futeducation.com/">Main Site</a>
+            <a href="https://neet.futeducation.com/">NEET Portal</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="badge">Coming Soon</div>
+        <h1>Our Ultimate Exam Portal is Launching Soon!</h1>
+        <p class="subtitle">We are building a comprehensive platform to guide you through your academic journey. Get ready to conquer professional exams in India and abroad.</p>
+        
+        <div class="exams-tags">
+            <div class="exam-tag">NEET</div>
+            <div class="exam-tag">JEE</div>
+            <div class="exam-tag">MBA</div>
+            <div class="exam-tag">Study Abroad</div>
+            <div class="exam-tag">Indian Professional Exams</div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="contact-info">
+            <div>
+                <strong>Phone:</strong> <a href="tel:+917303848310">+91 7303848310</a>
+            </div>
+            <div>
+                <strong>Email:</strong> <a href="mailto:futureeducation@live.com">futureeducation@live.com</a>
+            </div>
+        </div>
+        <p>&copy; 2026 Future Education. All Rights Reserved.</p>
+        <p class="developer-credit">Developing by <a href="https://rsoftinnovations.com/" target="_blank" rel="noopener noreferrer">RSoftInnovations</a></p>
+    </footer>
+
+</body>
+</html>

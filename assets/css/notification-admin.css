@@ -1,0 +1,284 @@
+/* ======================================================
+   GLOBAL RESET & BASE
+   ====================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Poppins", "Roboto", sans-serif;
+  background-color: #f6f8fb;
+  margin: 0;
+}
+
+/* ======================================================
+   HEADER (DESKTOP DEFAULT)
+   ====================================================== */
+
+.header {
+  background: linear-gradient(135deg, #b71c1c, #d32f2f);
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.header .container-xl {
+  display: flex;
+  align-items: center;
+  min-height: 64px;
+}
+
+/* LOGO */
+.header .logo img {
+  max-height: 42px;
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+/* USER BADGE */
+.header .badge {
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* LOGOUT BUTTON */
+.header button {
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+  background: transparent;
+  transition: all 0.25s ease;
+}
+
+.header button:hover {
+  background: #ffffff;
+  color: #b71c1c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.header button:active {
+  transform: scale(0.94);
+}
+
+/* ======================================================
+   PAGE TITLE
+   ====================================================== */
+
+.page-title {
+  padding: 40px 0 20px;
+}
+
+.page-title h1 {
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* ======================================================
+   CARD / FORM
+   ====================================================== */
+
+.card {
+  border-radius: 18px;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.card label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #475569;
+}
+
+.card input,
+.card textarea {
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+}
+
+.card textarea {
+  resize: vertical;
+}
+
+/* SEND BUTTON */
+#sendBtn {
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 12px;
+  transition: all 0.25s ease;
+}
+
+#sendBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(220, 38, 38, 0.4);
+}
+
+#sendBtn:active {
+  transform: scale(0.96);
+}
+
+/* STATUS TEXT */
+#status {
+  font-size: 0.9rem;
+}
+
+/* ======================================================
+   TABLE (HISTORY)
+   ====================================================== */
+
+.table {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.table thead {
+  background: #1e293b;
+  color: #ffffff;
+}
+
+.table th {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.table td {
+  font-size: 0.85rem;
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* BADGES */
+.badge {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+/* ======================================================
+   FOOTER
+   ====================================================== */
+
+.footer {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+/* ======================================================
+   MOBILE & TABLET HEADER (FIXED GRID)
+   LOGO | USERNAME | LOGOUT
+   ====================================================== */
+
+@media (max-width: 768px) {
+
+  /* OVERRIDE BOOTSTRAP FLEX */
+  .header .container-xl {
+    display: grid !important;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* LOGO — LEFT */
+  .header .logo {
+    justify-self: start;
+    margin: 0 !important;
+  }
+
+  .header .logo img {
+    max-height: 34px;
+  }
+
+  /* USERNAME — CENTER */
+  .header .badge {
+    display: inline-flex !important;
+    justify-self: center;
+    align-items: center;
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    margin: 0 !important;
+    white-space: nowrap;
+  }
+
+  /* LOGOUT — RIGHT */
+  .header button {
+    justify-self: end;
+    margin: 0 !important;
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+
+  .page-title h1 {
+    font-size: 1.35rem;
+  }
+
+  .card {
+    padding: 1rem !important;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* EXTRA SMALL PHONES */
+@media (max-width: 480px) {
+
+  .header .badge {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+  }
+
+  .header button {
+    font-size: 0.7rem;
+    padding: 5px 8px;
+  }
+
+  .page-title h1 {
+    font-size: 1.2rem;
+  }
+
+  .card input,
+  .card textarea {
+    font-size: 0.85rem;
+  }
+}
+
+/* TOUCH DEVICES — REMOVE HOVER JITTER */
+@media (hover: none) {
+
+  #sendBtn:hover,
+  .header button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  #sendBtn:active {
+    transform: scale(0.96);
+  }
+
+  .header button:active {
+    transform: scale(0.92);
+  }
+}

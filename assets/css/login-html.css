@@ -1,0 +1,91 @@
+:root {
+      --primary-red: #d93025;
+      --dark-red: #a8231a;
+      --soft-red: #fff5f5;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fdfdfd 0%, #ffebee 100%);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .login-card {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 35px;
+      box-shadow: 0 10px 30px rgba(217, 48, 37, 0.1);
+      width: 100%;
+      max-width: 400px;
+      border-top: 5px solid var(--primary-red);
+    }
+
+    .brand-logo { max-width: 150px; margin-bottom: 20px; }
+
+    .form-control {
+      border-radius: 8px;
+      padding: 12px;
+      border: 1px solid #ddd;
+      margin-bottom: 15px;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-red);
+      box-shadow: 0 0 0 0.2rem rgba(217, 48, 37, 0.1);
+    }
+
+    .btn-login {
+      background: var(--primary-red);
+      color: white;
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      border: none;
+      transition: 0.3s;
+    }
+
+    .btn-login:hover { background: var(--dark-red); color: white; }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      color: #bbb;
+      font-size: 0.8rem;
+    }
+
+    .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #eee; }
+    .divider:not(:empty)::before { margin-right: .5em; }
+    .divider:not(:empty)::after { margin-left: .5em; }
+
+    .btn-google {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      width: 100%;
+      color: #555;
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn-google:hover { background: var(--soft-red); border-color: var(--primary-red); }
+
+    #loader { display: none; color: var(--primary-red); margin-top: 10px; }
+    /* ======================================================
+   FOOTER
+   ====================================================== */
+
+.footer {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Blog - Future Education</title>
+  <meta name="description" content="Latest NEET UG 2026 updates, MBBS admission news, counselling guidance and preparation strategies.">
+  <meta name="keywords" content="">
+  <link rel="canonical" href="https://neet.futeducation.com/blog">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+
+  </style>
+</head>
+
+<body class="blog-page">
+
+<!-- header injection initiated -->
+<!-- HEADER -->
+<div id="navbar"></div>
+<script>var activeMenu = "blogs";</script>
+<script>
+fetch("/header.html")
+  .then(r => r.text())
+  .then(d => {
+    document.getElementById("navbar").innerHTML = d;
+
+    // Reset guard so initNavbar runs fresh on fetched content
+    const toggle = document.querySelector(".futeducation-mobile-toggle");
+    if (toggle) toggle.dataset.navReady = "";
+
+    if (typeof initNavbar === "function") initNavbar();
+  });
+</script>
+<!-- HEADER -->
+ <br><br>
+<!-- header injection completed -->
+
+  <main class="main">
+
+    <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Blog</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html" onclick="renderPage(1); return false;">Home</a></li>
+            <li class="current">Blog</li>
+          </ol>
+        </nav>
+      </div>
+    </div><div class="container">
+      <div class="row">
+
+        <div class="col-lg-8">
+
+          <section id="blog-posts" class="blog-posts section">
+            <div class="container">
+              <div class="row gy-4" id="dynamic-blog-posts">
+                </div>
+            </div>
+          </section><section id="blog-pagination" class="blog-pagination section">
+            <div class="container">
+              <div class="d-flex justify-content-center">
+                <ul id="pagination">
+                  </ul>
+              </div>
+            </div>
+          </section></div>
+
+        <div class="col-lg-4 sidebar">
+          <div class="widgets-container">
+
+            <div class="search-widget widget-item">
+              <h3 class="widget-title">Search</h3>
+              <form action="#" onsubmit="return false;">
+                <input type="text" id="searchInput" placeholder="Search posts...">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+              </form>
+            </div>
+            <div class="tags-widget widget-item">
+              <h3 class="widget-title">Tags</h3>
+              <ul>
+                <li><a href="#" onclick="filterCategory('MBBS'); return false;">MBBS</a></li>
+                <li><a href="#" onclick="filterCategory('NEET 2026'); return false;">NEET 2026</a></li>
+                <li><a href="#" onclick="filterCategory('Admissions'); return false;">Admissions</a></li>
+                <li><a href="#" onclick="filterCategory('Counselling'); return false;">Counselling</a></li>
+                <li><a href="#" onclick="filterCategory('MBBS Abroad'); return false;">MBBS Abroad</a></li>
+                <li><a href="#" onclick="filterCategory('MBBS'); return false;">MBBS Blog</a></li>
+              </ul>
+            </div>
+            <div class="recent-posts-widget widget-item">
+              <h3 class="widget-title">Recent Posts</h3>
+              <div id="dynamic-recent-posts"></div>
+            </div>
+            <div class="categories-widget widget-item">
+              <h3 class="widget-title">Categories</h3>
+              <ul class="mt-3" id="dynamic-categories">
+                </ul>
+            </div>  
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+<!--Footer-->
+<div id="footer"></div>
+<script>
+fetch("/footer.html")
+  .then(r => r.text())
+  .then(d => {
+    document.getElementById("footer").innerHTML = d;
+
+    // Init side widget after footer HTML is injected
+    if (typeof initSideWidget === "function") initSideWidget();
+    // Init leads forms after footer HTML is injected
+    if (typeof initLeadForms   === "function") initLeadForms();
+  });
+</script>
+<!-- FOOTER -->
+  <a href="#" id="back-to-posts-float" class="back-to-posts-float d-flex align-items-center justify-content-center" onclick="renderPage(currentPage); return false;">
+    <i class="bi bi-arrow-left-short"></i>
+  </a>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader">
+      <img src="https://neet.futeducation.com/assets/img/animation.gif" alt="Loading...">
+  </div>
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/blog.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/leads.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- <script src="https://blog.futeducation.com/feeds/posts/default?alt=json-in-script&callback=loadBlogPosts&max-results=200" defer></script> -->
+  <script src="https://blog.futeducation.com/feeds/posts/default?alt=json-in-script&callback=loadBlogPosts"></script>
+
+</body>
+
+</html>
