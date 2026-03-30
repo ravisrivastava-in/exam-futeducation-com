@@ -124,65 +124,221 @@
   window.addEventListener("load", initSwiper);
 
   /* 11. NAVBAR */
+
+/**
+ * =============================================
+ *  FIXED & OPTIMIZED NAVBAR — v2.0
+ * ============================================= */
+
+(function () {
+  "use strict";
+  // ── Cached references ──
+  var body = document.body;
+  var DESKTOP_BP = 1200; // px — must match your CSS @media breakpoint
+  var lastWidth = window.innerWidth;
+
+  /**
+   * Main init — safe to call multiple times (idempotent).
+   */
   window.initNavbar = function initNavbar() {
+
+    // ── 1. Grab elements ──
     var mobileToggle = document.querySelector(".futeducation-mobile-toggle");
-    var navMenu      = document.querySelector("#futeducation-navmenu");
-    if (!mobileToggle || mobileToggle.dataset.navReady === "true") return;
+
+    // Try ID first, fall back to class (fixes selector-mismatch bug)
+    var navMenu = document.querySelector("#futeducation-navmenu")
+               || document.querySelector(".futeducation-navmenu");
+
+    if (!mobileToggle) return; // nothing to do — no toggle in the DOM
+    if (mobileToggle.dataset.navReady === "true") return; // already wired
     mobileToggle.dataset.navReady = "true";
-    _body.classList.remove("futeducation-mobile-active");
-    if (!mobileToggle.classList.contains("bi-list")) {
-      mobileToggle.classList.remove("bi-x");
-      mobileToggle.classList.add("bi-list");
-    }
+
+    // ── 2. Ensure clean starting state ──
+    body.classList.remove("futeducation-mobile-active");
+    mobileToggle.classList.remove("bi-x");
+    mobileToggle.classList.add("bi-list");
+
+    // ── 3. Create overlay (once) ──
     var overlay = document.querySelector(".futeducation-mobile-overlay");
     if (!overlay) {
       overlay = document.createElement("div");
       overlay.className = "futeducation-mobile-overlay";
-      _body.appendChild(overlay);
+      body.appendChild(overlay);
     }
-    function openMenu()  { _body.classList.add("futeducation-mobile-active");    mobileToggle.classList.replace("bi-list", "bi-x"); }
-    function closeMenu() { _body.classList.remove("futeducation-mobile-active"); mobileToggle.classList.replace("bi-x", "bi-list"); }
-    mobileToggle.addEventListener("click", function () {
-      _body.classList.contains("futeducation-mobile-active") ? closeMenu() : openMenu();
+
+    // ── 4. Open / Close helpers ──
+    function isOpen() {
+      return body.classList.contains("futeducation-mobile-active");
+    }
+
+    function openMenu() {
+      body.classList.add("futeducation-mobile-active");
+      mobileToggle.classList.replace("bi-list", "bi-x");
+    }
+
+    function closeMenu() {
+      body.classList.remove("futeducation-mobile-active");
+      mobileToggle.classList.replace("bi-x", "bi-list");
+
+      // Collapse every open dropdown so re-opening the menu is clean
+      if (navMenu) {
+        navMenu.querySelectorAll(".futeducation-dropdown-active")
+          .forEach(function (dd) { dd.classList.remove("futeducation-dropdown-active"); });
+      }
+    }
+
+    // ── 5. Toggle button ──
+    mobileToggle.addEventListener("click", function (e) {
+      e.stopPropagation(); // prevent document-level taps from interfering
+      isOpen() ? closeMenu() : openMenu();
     });
-    overlay.addEventListener("click", closeMenu);
+
+    // ── 6. Overlay click closes menu ──
+    overlay.addEventListener("click", function (e) {
+      e.stopPropagation();
+      closeMenu();
+    });
+
+    // ── 7. Dropdown toggles (MOBILE ONLY) ──
+    //    The entire parent <a> acts as the toggle when it contains an <i> arrow.
+    //    This fixes the "tap area too narrow" bug.
     if (navMenu) {
       navMenu.addEventListener("click", function (e) {
-        if (window.innerWidth >= 1200) return;
-        var btn = e.target.closest(".futeducation-toggle-dropdown");
-        if (!btn) return;
-        e.preventDefault();
-        var dd = btn.closest(".futeducation-dropdown");
-        if (dd) dd.classList.toggle("futeducation-dropdown-active");
+        if (window.innerWidth >= DESKTOP_BP) return; // desktop uses CSS :hover
+
+        // Did the tap land on (or inside) a dropdown's direct <a>?
+        var parentLi = e.target.closest(".futeducation-dropdown");
+        if (!parentLi) return;
+
+        // Only intercept the *direct* child link of this dropdown <li>,
+        // not links inside the nested <ul>.
+        var directLink = parentLi.querySelector(":scope > a");
+        var clickedLink = e.target.closest("a");
+
+        if (clickedLink && clickedLink === directLink) {
+          e.preventDefault(); // don't navigate — just toggle
+          e.stopPropagation();
+
+          // Close sibling dropdowns at the same level (accordion behavior)
+          var siblings = parentLi.parentElement
+            ? parentLi.parentElement.querySelectorAll(":scope > .futeducation-dropdown-active")
+            : [];
+          siblings.forEach(function (sib) {
+            if (sib !== parentLi) sib.classList.remove("futeducation-dropdown-active");
+          });
+
+          parentLi.classList.toggle("futeducation-dropdown-active");
+        }
+        // If the click was on a *child* link inside the dropdown <ul>,
+        // we let it navigate normally (handled below in step 8).
       });
     }
-    var currentMenu = (typeof activeMenu !== "undefined" && activeMenu)
-      ? activeMenu
-      : (navMenu && navMenu.dataset.active ? navMenu.dataset.active : null);
+
+    // ── 8. Close menu when a real (non-dropdown-parent) link is tapped ──
+    //    FIX: skip links that are dropdown toggles — they are handled above.
     if (navMenu) {
-      var activeLink = currentMenu ? navMenu.querySelector("[data-menu=\"" + currentMenu + "\"]") : null;
-      if (!activeLink) {
-        var cp = window.location.pathname;
-        navMenu.querySelectorAll("a[href]").forEach(function (a) {
-          try { var lp = new URL(a.href, window.location.origin).pathname; if (lp !== "/" && cp.endsWith(lp)) activeLink = a; } catch (ex) {}
+      navMenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          if (window.innerWidth >= DESKTOP_BP) return;
+
+          // If this link is the direct child of a .futeducation-dropdown,
+          // it's a toggle — do NOT close the menu.
+          var parentDropdown = link.closest(".futeducation-dropdown");
+          if (parentDropdown) {
+            var directLink = parentDropdown.querySelector(":scope > a");
+            if (link === directLink) return; // it's a toggle, skip
+          }
+
+          // It's a real navigation link → close menu
+          closeMenu();
         });
+      });
+    }
+
+    // ── 9. Active-menu highlighting ──
+    if (navMenu) {
+      // Priority 1: explicit `activeMenu` JS variable or data-active attribute
+      var currentMenu = (typeof activeMenu !== "undefined" && activeMenu)
+        ? activeMenu
+        : (navMenu.dataset.active || null);
+
+      var activeLink = null;
+
+      if (currentMenu) {
+        activeLink = navMenu.querySelector('[data-menu="' + currentMenu + '"]');
       }
+
+      // Priority 2: match by URL pathname
+      if (!activeLink) {
+        var currentPath = window.location.pathname.replace(/\/+$/, ""); // strip trailing slash
+        var bestMatch = null;
+        var bestLength = 0;
+
+        navMenu.querySelectorAll("a[href]").forEach(function (a) {
+          try {
+            var linkPath = new URL(a.href, window.location.origin).pathname.replace(/\/+$/, "");
+            // Skip root "/" to avoid matching everything
+            if (linkPath === "" || linkPath === "/") return;
+            // Longest-match wins (e.g., /courses/neet beats /courses)
+            if (currentPath.endsWith(linkPath) && linkPath.length > bestLength) {
+              bestMatch = a;
+              bestLength = linkPath.length;
+            }
+          } catch (ex) { /* malformed href, ignore */ }
+        });
+
+        activeLink = bestMatch;
+      }
+
       if (activeLink) {
         activeLink.classList.add("active");
-        var par = activeLink.closest(".futeducation-dropdown");
-        while (par) { par.classList.add("active"); par = par.parentElement ? par.parentElement.closest(".futeducation-dropdown") : null; }
+        // Walk up and mark parent dropdowns as active too
+        var parent = activeLink.closest(".futeducation-dropdown");
+        while (parent) {
+          parent.classList.add("active");
+          var grandparent = parent.parentElement
+            ? parent.parentElement.closest(".futeducation-dropdown")
+            : null;
+          parent = grandparent;
+        }
       }
-      navMenu.querySelectorAll("a").forEach(function (lnk) {
-        lnk.addEventListener("click", function () { if (window.innerWidth < 1200) closeMenu(); });
-      });
     }
-    var rt;
+
+    // ── 10. Resize handler — ONLY fires when crossing the breakpoint ──
+    //    FIX: mobile browsers fire `resize` when the address bar hides on
+    //    scroll. We now track actual width changes and only act when the
+    //    viewport crosses the desktop breakpoint.
     window.addEventListener("resize", function () {
-      clearTimeout(rt);
-      rt = setTimeout(function () { if (window.innerWidth >= 1200) closeMenu(); }, 150);
+      var newWidth = window.innerWidth;
+      if (newWidth === lastWidth) return; // address-bar resize, ignore
+
+      var crossedToDesktop = lastWidth < DESKTOP_BP && newWidth >= DESKTOP_BP;
+      lastWidth = newWidth;
+
+      if (crossedToDesktop && isOpen()) {
+        closeMenu();
+      }
+    }, { passive: true });
+
+  }; // end initNavbar
+
+  // ── Auto-init: wait for DOM if needed ──
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      if (document.querySelector("#futeducation-navmenu") ||
+          document.querySelector(".futeducation-navmenu")) {
+        window.initNavbar();
+      }
     });
-  };
-  if (document.querySelector("#futeducation-navmenu")) window.initNavbar();
+  } else {
+    // DOM already ready (script has `defer`, or is at end of <body>)
+    if (document.querySelector("#futeducation-navmenu") ||
+        document.querySelector(".futeducation-navmenu")) {
+      window.initNavbar();
+    }
+  }
+
+})();
 
   /* 12. PUSH NOTIFICATIONS */
   (function () {

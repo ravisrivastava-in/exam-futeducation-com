@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+  <!-- THIS LINE FIXES ALL ASSET PATHS WHEN SERVED AT /blog/slug -->
+  <base href="/">
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Blog - Future Education</title>
@@ -9,8 +12,30 @@
   <meta name="keywords" content="">
   <link rel="canonical" href="https://neet.futeducation.com/blog">
 
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- ============================================================
+    FAVICONS — all device sizes
+  ============================================================ -->
+<!-- Basic Favicon -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+
+<!-- Android -->
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+
+<!-- Apple -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- Manifest -->
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- Windows Tile -->
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#d9232d">
+
+<!-- Theme -->
+<meta name="theme-color" content="#ffffff">
 
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -135,7 +160,7 @@ fetch("/footer.html")
   });
 </script>
 <!-- FOOTER -->
-  <a href="#" id="back-to-posts-float" class="back-to-posts-float d-flex align-items-center justify-content-center" onclick="renderPage(currentPage); return false;">
+  <a href="#" id="back-to-posts-float" class="back-to-posts-float d-flex align-items-center justify-content-center" onclick="goBackToBlog(); return false;">
     <i class="bi bi-arrow-left-short"></i>
   </a>
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -145,7 +170,7 @@ fetch("/footer.html")
   </div>
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/blog.js"></script>
+  <script src="assets/js/blogs.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
@@ -157,8 +182,6 @@ fetch("/footer.html")
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- <script src="https://blog.futeducation.com/feeds/posts/default?alt=json-in-script&callback=loadBlogPosts&max-results=200" defer></script> -->
   <script src="https://blog.futeducation.com/feeds/posts/default?alt=json-in-script&callback=loadBlogPosts"></script>
 
 </body>
