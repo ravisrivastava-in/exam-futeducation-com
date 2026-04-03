@@ -9,6 +9,30 @@
   <link rel="preload" as="image" href="assets/img/hero-carousel/neet-ug-mbbs-admission-counselling-roadmap-hero.png" fetchpriority="high">
   <link rel="preload" as="style" href="assets/vendor/bootstrap/css/bootstrap.min.css">
   <link rel="preload" as="style" href="assets/css/main.css">
+    <!-- ============================================================
+    FAVICONS — all device sizes
+  ============================================================ -->
+<!-- Basic Favicon -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+
+<!-- Android -->
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+
+<!-- Apple -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- Manifest -->
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- Windows Tile -->
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#d9232d">
+
+<!-- Theme -->
+<meta name="theme-color" content="#ffffff">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -1608,14 +1632,16 @@ fetch("/footer.html").then(r=>r.text()).then(d=>{
 <script src="assets/js/leads.js"></script>
 <script src="assets/js/main.js" defer></script>
 
-<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
-window.OneSignal=window.OneSignal||[];
-OneSignal.push(function(){
-  OneSignal.init({ appId:"0c786bc8-3d03-44a0-b43d-88f95525fdae", notifyButton:{enable:true} });
-  OneSignal.showSlidedownPrompt();
-});
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "8768c7dc-917f-45e4-a25d-66c2f5deaf1b",
+    });
+  });
 </script>
+
 
 </body>
 </html>

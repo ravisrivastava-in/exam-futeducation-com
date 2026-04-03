@@ -1,0 +1,64 @@
+User-agent: *
+
+# Allow all important public pages
+Allow: /
+Allow: /colleges/
+Allow: /deemed-colleges/
+Allow: /medical-colleges-india/
+Allow: /mbbs-admission-2026/
+Allow: /mbbs-abroad/
+Allow: /neet-guide/
+Allow: /counselling/
+Allow: /blog/
+Allow: /ayush/
+Allow: /BDS/
+Allow: /MBBS/
+Allow: /neet-pg-2026/
+Allow: /loan/
+Allow: /favicon.ico
+Allow: /favicon-16x16.png
+Allow: /favicon-32x32.png
+Allow: /apple-touch-icon.png
+Allow: /android-chrome-192x192.png
+Allow: /android-chrome-512x512.png
+Allow: /site.webmanifest
+
+# Block internal/system folders
+Disallow: /admin/
+Disallow: /login/
+Disallow: /functions/
+Disallow: /.git/
+Disallow: /.vscode/
+Disallow: /node_modules/
+Disallow: /crm/
+
+# Block layout/system pages
+Disallow: /header
+Disallow: /footer
+
+# Block duplicate/test pages
+Disallow: /*starter*
+Disallow: /*copy*
+Disallow: /*test*
+Disallow: /*dashboard*
+Disallow: /*404*
+Disallow: /*preview*
+Disallow: /*temp*
+
+# Allow important query parameters for counselling/filters (VERY IMPORTANT)
+Allow: /*?college=
+Allow: /*?course=
+Allow: /*?state=
+Allow: /*?exam=
+
+# Block unwanted parameters (SEO duplicate control)
+Disallow: /*?*
+Disallow: /*&*
+
+# Allow images
+Allow: /assets/
+Allow: /images/
+Allow: /img/
+
+# Sitemap
+Sitemap: https://neet.futeducation.com/sitemap.xml

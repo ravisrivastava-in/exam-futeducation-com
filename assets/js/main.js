@@ -340,19 +340,6 @@
 
 })();
 
-  /* 12. PUSH NOTIFICATIONS */
-  (function () {
-    if (!("Notification" in window)) return;
-    if (Notification.permission === "default") Notification.requestPermission();
-    var btn = document.getElementById("enableNotifications");
-    if (!btn) return;
-    btn.addEventListener("click", function () {
-      function send() { new Notification("Future Education", { body: "You will now receive NEET UG updates.", icon: "/assets/img/logo/log.png" }); }
-      if (Notification.permission === "granted") { send(); }
-      else if (Notification.permission !== "denied") { Notification.requestPermission().then(function (p) { if (p === "granted") send(); }); }
-    });
-  })();
-
   /* 13. IMAGE FALLBACK */
   var PH = "/assets/img/futeducation.png";
   document.querySelectorAll("img").forEach(function (img) {
@@ -858,44 +845,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-});
-//
-//URL FALLBACK
-document.addEventListener('DOMContentLoaded', () => {
-    document.body.addEventListener('click', async (e) => {
-        // Find the closest anchor <a> tag that was clicked
-        const link = e.target.closest('a');
-        
-        // If it's not a link, or doesn't have an href, ignore it
-        if (!link || !link.href) return;
-
-        // Check 1: Is it a placeholder link (like href="#")?
-        if (link.getAttribute('href') === '#' || link.getAttribute('href') === '') {
-            e.preventDefault();
-            alert('This section is currently under development. Please check back later!');
-            return;
-        }
-
-        // Check 2: Is it an internal link on your own domain?
-        if (link.origin === window.location.origin && !link.hash) {
-            e.preventDefault(); // Stop the browser from navigating immediately
-
-            try {
-                // Ping the server to see if the page actually exists
-                const response = await fetch(link.href, { method: 'HEAD' });
-                
-                if (response.ok) {
-                    // Status 200: The page exists! Proceed to the link.
-                    window.location.href = link.href;
-                } else {
-                    // Status 404 (or other): The page doesn't exist yet.
-                    alert('This page is currently under development. Stay tuned!');
-                }
-            } catch (error) {
-                // If the fetch fails completely (network error)
-                alert('This section is currently under development or temporarily unavailable.');
-            }
-        }
-    });
 });
 //

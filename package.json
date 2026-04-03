@@ -1,0 +1,24 @@
+{
+  "name": "neet.futeducation.com",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ham.js",
+"scripts": {
+  "generate-sitemap": "node sitemap.js"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ravisrivastava-in/neet.futeducation.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ravisrivastava-in/neet.futeducation.com/issues"
+  },
+  "homepage": "https://github.com/ravisrivastava-in/neet.futeducation.com#readme",
+  "dependencies": {
+    "sitemap": "^9.0.0"
+  }
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+  <title>Future Education – Medical Admission Blog</title>
+  <link>https://neet.futeducation.com/</link>
+  <description>Latest updates on NEET UG, MBBS admissions, cutoffs, counselling, and medical education.</description>
+  <language>en-in</language>
+
+  <!-- BLOG ITEM -->
+  <item>
+    <title>NEET UG 2026 Registration Guide</title>
+    <link>https://neet.futeducation.com/blogs-page.html?slug=neet-ug-2026-registration-guide</link>
+    <guid>neet-ug-2026-registration-guide</guid>
+    <pubDate>Wed, 05 Feb 2026 00:00:00 GMT</pubDate>
+    <description><![CDATA[
+      Complete step-by-step guide for NEET UG 2026 registration.
+    ]]></description>
+    <category>NEET UG</category>
+    <category>registration</category>
+    <category>mbbs</category>
+  </item>
+
+</channel>
+</rss>

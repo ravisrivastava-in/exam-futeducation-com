@@ -1,0 +1,30 @@
+
+  ==============================
+  SITEMAP VERIFICATION REPORT
+  ==============================
+
+  TOTAL HTML FILES FOUND: 13
+  INCLUDED IN SITEMAP: 6
+  EXCLUDED FILES: 7
+
+  ------------------------------
+  INCLUDED FILES
+  ------------------------------
+  about.html
+blog.html
+coming-soon.html
+contact.html
+index.html
+sitemap.html
+
+  ------------------------------
+  EXCLUDED FILES
+  ------------------------------
+  404.html
+crm.html
+footer.html
+header.html
+starter-detailed.html
+starter-page.html
+test.html
+  

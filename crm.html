@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future Education – Lead CRM Dashboard</title>
+<link rel="icon" href="https://neet.futeducation.com/assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<style>
+:root {
+  --fe-bg: #f2f4f6;
+  --fe-bg-white: #ffffff;
+  --fe-dark: #3b4654;
+  --fe-dark-deep: #2c3440;
+  --fe-dark-surface: #444e5b;
+  --fe-red: #d9232d;
+  --fe-red-hover: #b91d26;
+  --fe-red-glow: rgba(217,35,45,.12);
+  --fe-red-light: #ff6b6b;
+  --fe-heading: #556270;
+  --fe-text: #444444;
+  --fe-text-dim: #6b7b8d;
+  --fe-text-muted: #8896a4;
+  --fe-border: #e2e6ea;
+  --fe-border-dark: rgba(255,255,255,.08);
+  --fe-green: #059652;
+  --fe-green-glow: rgba(5,150,82,.1);
+  --fe-blue: #3b82f6;
+  --fe-blue-glow: rgba(59,130,246,.1);
+  --fe-orange: #f59e0b;
+  --fe-orange-glow: rgba(245,158,11,.1);
+  --fe-purple: #8b5cf6;
+  --fe-purple-glow: rgba(139,92,246,.1);
+  --fe-pink: #ec4899;
+  --fe-pink-glow: rgba(236,72,153,.1);
+  --fe-shadow: 0 1px 3px rgba(0,0,0,.06), 0 2px 8px rgba(0,0,0,.04);
+  --fe-shadow-lg: 0 4px 20px rgba(0,0,0,.08);
+  --fe-radius: 10px;
+  --fe-radius-sm: 6px;
+  --sidebar-w: 250px;
+  --font-body: 'Roboto', system-ui, sans-serif;
+  --font-heading: 'Poppins', sans-serif;
+  --font-nav: 'Poppins', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--fe-bg);color:var(--fe-text);line-height:1.6;overflow-x:hidden;min-height:100vh;}
+a{color:var(--fe-red);text-decoration:none;transition:.3s;}
+a:hover{color:var(--fe-red-hover);}
+h1,h2,h3,h4,h5,h6{color:var(--fe-heading);font-family:var(--font-heading);}
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:var(--fe-bg);}
+::-webkit-scrollbar-thumb{background:#c5ccd3;border-radius:3px;}
+
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--fe-dark);position:relative;overflow:hidden;}
+#login-screen::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(217,35,45,.15) 0%,transparent 70%);top:-180px;right:-150px;}
+.login-card{background:var(--fe-bg-white);border-radius:16px;padding:44px 38px;width:410px;max-width:92vw;box-shadow:0 20px 60px rgba(0,0,0,.3);position:relative;z-index:2;animation:slideUp .5s ease-out;}
+@keyframes slideUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.login-logo{text-align:center;margin-bottom:28px;}
+.login-logo img{height:44px;margin-bottom:12px;}
+.login-logo h1{font-size:1.2rem;font-weight:700;color:var(--fe-heading);}
+.login-logo p{color:var(--fe-text-muted);font-size:.82rem;margin-top:2px;}
+
+.fe-input-group{margin-bottom:16px;}
+.fe-input-group label{display:block;font-size:.75rem;font-weight:600;color:var(--fe-text-dim);margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px;font-family:var(--font-nav);}
+.fe-input{width:100%;padding:10px 14px;background:var(--fe-bg);border:1.5px solid var(--fe-border);border-radius:var(--fe-radius-sm);color:var(--fe-text);font-family:inherit;font-size:.88rem;transition:.25s;outline:none;}
+.fe-input:focus{border-color:var(--fe-red);box-shadow:0 0 0 3px var(--fe-red-glow);}
+.fe-input::placeholder{color:var(--fe-text-muted);}
+select.fe-input{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23556270' viewBox='0 0 16 16'%3E%3Cpath d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;}
+textarea.fe-input{resize:vertical;min-height:70px;}
+
+.fe-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 22px;border:none;border-radius:var(--fe-radius-sm);font-family:var(--font-nav);font-size:.85rem;font-weight:600;cursor:pointer;transition:.25s;text-decoration:none;white-space:nowrap;}
+.fe-btn-primary{background:var(--fe-red);color:#fff;}
+.fe-btn-primary:hover{background:var(--fe-red-hover);box-shadow:0 4px 16px var(--fe-red-glow);color:#fff;}
+.fe-btn-secondary{background:var(--fe-bg);color:var(--fe-text);border:1.5px solid var(--fe-border);}
+.fe-btn-secondary:hover{background:#eaedf0;}
+.fe-btn-sm{padding:6px 12px;font-size:.78rem;}
+.fe-btn-xs{padding:4px 9px;font-size:.72rem;border-radius:5px;}
+.fe-btn-icon{width:32px;height:32px;padding:0;border-radius:7px;font-size:.95rem;}
+.fe-btn-ghost{background:transparent;color:var(--fe-text-dim);border:none;}
+.fe-btn-ghost:hover{color:var(--fe-red);background:var(--fe-red-glow);}
+.fe-btn-danger{background:#ef4444;color:#fff;}
+.fe-btn-success{background:var(--fe-green);color:#fff;}
+.fe-btn-whatsapp{background:#25d366;color:#fff;}
+.fe-btn-whatsapp:hover{background:#20bd5a;color:#fff;}
+.fe-btn-full{width:100%;}
+
+#app-shell{display:none;}
+#app-shell.active{display:flex;min-height:100vh;}
+
+.fe-sidebar{width:var(--sidebar-w);background:var(--fe-dark);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;transition:transform .3s ease;}
+.fe-sidebar-logo{padding:20px 18px;border-bottom:1px solid var(--fe-border-dark);display:flex;align-items:center;gap:10px;}
+.fe-sidebar-logo img{height:32px;}
+.fe-sidebar-logo span{font-family:var(--font-heading);font-size:.92rem;font-weight:700;color:#fff;}
+.fe-sidebar-nav{flex:1;overflow-y:auto;padding:10px 0;}
+.fe-nav-item{display:flex;align-items:center;gap:11px;padding:10px 18px;color:rgba(255,255,255,.65);font-size:.84rem;font-weight:500;font-family:var(--font-nav);cursor:pointer;transition:.2s;position:relative;border:none;background:none;width:100%;text-align:left;}
+.fe-nav-item:hover{color:#fff;background:rgba(255,255,255,.06);}
+.fe-nav-item.active{color:#fff;background:var(--fe-red-glow);}
+.fe-nav-item.active::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:3px;border-radius:0 3px 3px 0;background:var(--fe-red);}
+.fe-nav-item i{font-size:1.05rem;width:20px;text-align:center;}
+.fe-nav-badge{margin-left:auto;background:var(--fe-red);color:#fff;font-size:.62rem;font-weight:700;padding:2px 7px;border-radius:10px;min-width:18px;text-align:center;}
+.fe-nav-badge.green{background:var(--fe-green);}
+.fe-nav-divider{height:1px;background:var(--fe-border-dark);margin:8px 18px;}
+.fe-sidebar-footer{padding:14px 18px;border-top:1px solid var(--fe-border-dark);}
+.fe-user-chip{display:flex;align-items:center;gap:9px;padding:7px 10px;background:rgba(255,255,255,.05);border-radius:var(--fe-radius-sm);}
+.fe-user-avatar{width:34px;height:34px;border-radius:50%;background:var(--fe-red);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;color:#fff;font-family:var(--font-heading);}
+.fe-user-info{flex:1;min-width:0;}
+.fe-user-info .name{font-size:.8rem;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.fe-user-info .role{font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.3px;}
+
+.fe-main{flex:1;margin-left:var(--sidebar-w);display:flex;flex-direction:column;min-height:100vh;}
+.fe-topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;border-bottom:1px solid var(--fe-border);background:var(--fe-bg-white);position:sticky;top:0;z-index:50;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.fe-topbar-left{display:flex;align-items:center;gap:14px;}
+.fe-topbar-left h1{font-size:1.1rem;font-weight:700;color:var(--fe-heading);}
+.fe-topbar-right{display:flex;align-items:center;gap:10px;}
+.fe-search-box{display:flex;align-items:center;gap:7px;background:var(--fe-bg);border:1.5px solid var(--fe-border);border-radius:var(--fe-radius-sm);padding:7px 12px;width:260px;transition:.25s;}
+.fe-search-box:focus-within{border-color:var(--fe-red);}
+.fe-search-box i{color:var(--fe-text-muted);font-size:.85rem;}
+.fe-search-box input{background:none;border:none;color:var(--fe-text);font-family:inherit;font-size:.84rem;outline:none;width:100%;}
+.fe-topbar-btn{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;border:1.5px solid var(--fe-border);background:none;color:var(--fe-text-dim);cursor:pointer;transition:.2s;font-size:1rem;}
+.fe-topbar-btn:hover{background:var(--fe-bg);color:var(--fe-red);}
+.fe-mobile-toggle{display:none;}
+.fe-content{flex:1;padding:24px;}
+
+.fe-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:24px;}
+.fe-stat-card{background:var(--fe-bg-white);border:1px solid var(--fe-border);border-radius:var(--fe-radius);padding:18px;position:relative;overflow:hidden;transition:.2s;}
+.fe-stat-card:hover{box-shadow:var(--fe-shadow-lg);transform:translateY(-1px);}
+.fe-stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.fe-stat-card.total::before{background:linear-gradient(90deg,var(--fe-red),var(--fe-red-light));}
+.fe-stat-card.new::before{background:var(--fe-orange);}
+.fe-stat-card.assigned::before{background:var(--fe-blue);}
+.fe-stat-card.followup::before{background:var(--fe-purple);}
+.fe-stat-card.overdue::before{background:#ef4444;}
+.fe-stat-card.hot::before{background:var(--fe-pink);}
+.fe-stat-card.converted::before{background:var(--fe-green);}
+.fe-stat-card.lost::before{background:var(--fe-text-muted);}
+.fe-stat-icon{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;margin-bottom:10px;}
+.fe-stat-card.total .fe-stat-icon{background:var(--fe-red-glow);color:var(--fe-red);}
+.fe-stat-card.new .fe-stat-icon{background:var(--fe-orange-glow);color:var(--fe-orange);}
+.fe-stat-card.assigned .fe-stat-icon{background:var(--fe-blue-glow);color:var(--fe-blue);}
+.fe-stat-card.followup .fe-stat-icon{background:var(--fe-purple-glow);color:var(--fe-purple);}
+.fe-stat-card.overdue .fe-stat-icon{background:rgba(239,68,68,.1);color:#ef4444;}
+.fe-stat-card.hot .fe-stat-icon{background:var(--fe-pink-glow);color:var(--fe-pink);}
+.fe-stat-card.converted .fe-stat-icon{background:var(--fe-green-glow);color:var(--fe-green);}
+.fe-stat-card.lost .fe-stat-icon{background:rgba(136,150,164,.1);color:var(--fe-text-muted);}
+.fe-stat-num{font-size:1.7rem;font-weight:800;line-height:1;margin-bottom:3px;color:var(--fe-heading);font-family:var(--font-heading);}
+.fe-stat-label{font-size:.72rem;color:var(--fe-text-muted);text-transform:uppercase;letter-spacing:.4px;font-weight:600;font-family:var(--font-nav);}
+
+.fe-panel{background:var(--fe-bg-white);border:1px solid var(--fe-border);border-radius:var(--fe-radius);overflow:hidden;box-shadow:var(--fe-shadow);}
+.fe-panel-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--fe-border);}
+.fe-panel-header h3{font-size:.9rem;font-weight:700;color:var(--fe-heading);}
+.fe-panel-footer{padding:12px 20px;border-top:1px solid var(--fe-border);display:flex;align-items:center;justify-content:space-between;}
+
+.fe-table-wrap{overflow-x:auto;}
+.fe-table{width:100%;border-collapse:collapse;font-size:.8rem;}
+.fe-table th{padding:10px 14px;text-align:left;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--fe-text-muted);background:var(--fe-bg);border-bottom:1px solid var(--fe-border);white-space:nowrap;font-family:var(--font-nav);}
+.fe-table td{padding:10px 14px;border-bottom:1px solid var(--fe-border);vertical-align:middle;white-space:nowrap;}
+.fe-table tr:hover td{background:rgba(217,35,45,.02);}
+.fe-table tr:last-child td{border-bottom:none;}
+
+.fe-badge{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:20px;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.2px;font-family:var(--font-nav);}
+.fe-badge-new{background:var(--fe-orange-glow);color:var(--fe-orange);}
+.fe-badge-contacted{background:var(--fe-blue-glow);color:var(--fe-blue);}
+.fe-badge-followup{background:var(--fe-purple-glow);color:var(--fe-purple);}
+.fe-badge-hot{background:var(--fe-pink-glow);color:var(--fe-pink);}
+.fe-badge-converted{background:var(--fe-green-glow);color:var(--fe-green);}
+.fe-badge-lost{background:rgba(136,150,164,.1);color:var(--fe-text-muted);}
+.fe-badge-warm{background:var(--fe-orange-glow);color:#f97316;}
+.fe-badge-cold{background:rgba(56,189,248,.1);color:#0ea5e9;}
+.fe-badge-overdue{background:rgba(239,68,68,.1);color:#ef4444;}
+.fe-badge-tab{background:rgba(85,98,112,.08);color:var(--fe-heading);font-size:.64rem;}
+.fe-actions{display:flex;gap:3px;}
+
+.fe-drawer-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;}
+.fe-drawer-overlay.active{display:block;}
+.fe-drawer{position:fixed;top:0;right:-560px;bottom:0;width:560px;max-width:100vw;background:var(--fe-bg);border-left:1px solid var(--fe-border);z-index:201;display:flex;flex-direction:column;transition:right .3s ease;box-shadow:-4px 0 30px rgba(0,0,0,.1);}
+.fe-drawer.open{right:0;}
+.fe-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--fe-border);background:var(--fe-bg-white);}
+.fe-drawer-head h3{font-size:.95rem;font-weight:700;color:var(--fe-heading);}
+.fe-drawer-body{flex:1;overflow-y:auto;padding:22px;}
+.fe-drawer-section{margin-bottom:22px;}
+.fe-drawer-section h4{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--fe-text-muted);margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--fe-border);font-family:var(--font-nav);}
+.fe-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.fe-detail-item label{display:block;font-size:.68rem;color:var(--fe-text-muted);text-transform:uppercase;letter-spacing:.2px;margin-bottom:2px;font-weight:600;font-family:var(--font-nav);}
+.fe-detail-item .val{font-size:.86rem;font-weight:500;color:var(--fe-text);}
+.fe-detail-item.full{grid-column:1/-1;}
+
+.fe-timeline{position:relative;padding-left:22px;}
+.fe-timeline::before{content:'';position:absolute;left:7px;top:4px;bottom:4px;width:2px;background:var(--fe-border);}
+.fe-timeline-item{position:relative;padding-bottom:14px;}
+.fe-timeline-item::before{content:'';position:absolute;left:-18px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--fe-bg-white);border:2px solid var(--fe-red);}
+.fe-timeline-item .time{font-size:.68rem;color:var(--fe-text-muted);}
+.fe-timeline-item .event{font-size:.8rem;color:var(--fe-text);margin-top:1px;}
+
+.fe-filters{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.fe-filter-chip{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:20px;font-size:.76rem;font-weight:500;background:var(--fe-bg-white);border:1.5px solid var(--fe-border);color:var(--fe-text-dim);cursor:pointer;transition:.2s;font-family:var(--font-nav);}
+.fe-filter-chip:hover,.fe-filter-chip.active{background:var(--fe-red-glow);border-color:var(--fe-red);color:var(--fe-red);}
+.fe-tabs{display:flex;gap:4px;margin-bottom:18px;}
+.fe-tab{padding:7px 16px;border-radius:7px;font-size:.8rem;font-weight:600;color:var(--fe-text-dim);cursor:pointer;transition:.2s;background:none;border:none;font-family:var(--font-nav);}
+.fe-tab:hover{color:var(--fe-red);background:var(--fe-red-glow);}
+.fe-tab.active{color:#fff;background:var(--fe-red);}
+
+.fe-followup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;}
+.fe-followup-card{background:var(--fe-bg-white);border:1px solid var(--fe-border);border-radius:var(--fe-radius);padding:16px;transition:.2s;cursor:pointer;}
+.fe-followup-card:hover{box-shadow:var(--fe-shadow-lg);}
+.fe-followup-card.overdue{border-left:3px solid #ef4444;}
+.fe-followup-card.today{border-left:3px solid var(--fe-orange);}
+.fe-followup-card.upcoming{border-left:3px solid var(--fe-green);}
+.fe-followup-name{font-weight:700;font-size:.88rem;color:var(--fe-heading);}
+.fe-followup-meta{font-size:.76rem;color:var(--fe-text-dim);margin-top:3px;}
+.fe-followup-time{font-size:.8rem;font-weight:600;margin-top:7px;}.fe-followup-time i{margin-right:4px;color:var(--fe-red);}
+
+.fe-team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;}
+.fe-team-card{background:var(--fe-bg-white);border:1px solid var(--fe-border);border-radius:var(--fe-radius);padding:20px;text-align:center;transition:.2s;}
+.fe-team-card:hover{box-shadow:var(--fe-shadow-lg);}
+.fe-team-avatar{width:52px;height:52px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:700;color:#fff;font-family:var(--font-heading);}
+.fe-team-name{font-weight:700;font-size:.92rem;color:var(--fe-heading);}
+.fe-team-role{font-size:.72rem;color:var(--fe-text-muted);text-transform:uppercase;margin-top:1px;}
+.fe-team-stats{display:flex;justify-content:center;gap:20px;margin-top:12px;padding-top:12px;border-top:1px solid var(--fe-border);}
+.fe-team-stats .stat-val{font-size:1rem;font-weight:700;display:block;color:var(--fe-heading);}
+.fe-team-stats .stat-lbl{font-size:.65rem;color:var(--fe-text-muted);text-transform:uppercase;}
+
+.fe-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:300;align-items:center;justify-content:center;}
+.fe-modal-overlay.active{display:flex;}
+.fe-modal{background:var(--fe-bg-white);border:1px solid var(--fe-border);border-radius:var(--fe-radius);width:460px;max-width:94vw;max-height:90vh;overflow-y:auto;box-shadow:var(--fe-shadow-lg);animation:slideUp .3s ease;}
+.fe-modal-head{padding:18px 22px;border-bottom:1px solid var(--fe-border);display:flex;align-items:center;justify-content:space-between;}
+.fe-modal-head h3{font-size:.95rem;font-weight:700;color:var(--fe-heading);}
+.fe-modal-body{padding:22px;}
+.fe-modal-foot{padding:14px 22px;border-top:1px solid var(--fe-border);display:flex;justify-content:flex-end;gap:8px;}
+
+.fe-empty{text-align:center;padding:50px 20px;color:var(--fe-text-muted);}
+.fe-empty i{font-size:2.5rem;margin-bottom:10px;display:block;opacity:.35;}
+
+.fe-sync-dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:5px;}
+.fe-sync-dot.live{background:var(--fe-green);animation:pulse 2s infinite;}
+.fe-sync-dot.off{background:#ef4444;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.fe-page{display:none;}.fe-page.active{display:block;}
+.fe-row{display:flex;gap:18px;flex-wrap:wrap;}
+.fe-col-8{flex:2;min-width:0;}.fe-col-4{flex:1;min-width:260px;}
+.fe-quick-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px;}
+
+.fe-toast-container{position:fixed;bottom:20px;right:20px;z-index:500;display:flex;flex-direction:column;gap:7px;}
+.fe-toast{background:var(--fe-bg-white);border:1px solid var(--fe-border);border-radius:var(--fe-radius-sm);padding:12px 18px;font-size:.82rem;box-shadow:var(--fe-shadow-lg);display:flex;align-items:center;gap:9px;animation:slideUp .3s ease;min-width:260px;}
+.fe-toast.success{border-left:3px solid var(--fe-green);}
+.fe-toast.error{border-left:3px solid #ef4444;}
+.fe-toast.info{border-left:3px solid var(--fe-blue);}
+
+@media(max-width:768px){.fe-sidebar{transform:translateX(-100%);}.fe-sidebar.open{transform:translateX(0);}.fe-main{margin-left:0;}.fe-mobile-toggle{display:flex;}.fe-content{padding:14px;}.fe-drawer{width:100vw;}.fe-detail-grid{grid-template-columns:1fr;}.fe-row{flex-direction:column;}}
+@media(max-width:480px){.fe-stats-grid{grid-template-columns:repeat(2,1fr);gap:8px;}.fe-stat-card{padding:12px;}.fe-stat-num{font-size:1.3rem;}.fe-search-box{display:none;}}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+<div id="login-screen"><div class="login-card"><div class="login-logo"><img src="https://neet.futeducation.com/assets/img/logo/log.png" alt="Future Education"><h1>Lead CRM Dashboard</h1><p>Manage your admission leads</p></div><div class="fe-input-group"><label>Email</label><input type="email" id="login-email" class="fe-input" value="admin@futeducation.com"></div><div class="fe-input-group"><label>Password</label><input type="password" id="login-pass" class="fe-input" value="admin123"></div><button class="fe-btn fe-btn-primary fe-btn-full" onclick="handleLogin()" style="margin-top:6px;"><i class="bi bi-box-arrow-in-right"></i> Sign In</button><p style="text-align:center;margin-top:14px;font-size:.73rem;color:var(--fe-text-muted);">Demo: admin@futeducation.com / admin123</p></div></div>
+<div id="app-shell"><aside class="fe-sidebar" id="sidebar"><div class="fe-sidebar-logo"><img src="https://neet.futeducation.com/assets/img/logo/fe-footer-logo.png" alt="FE"><span>Lead CRM</span></div><nav class="fe-sidebar-nav"><button class="fe-nav-item active" data-page="dashboard" onclick="SP('dashboard')"><i class="bi bi-grid-1x2-fill"></i> Dashboard</button><button class="fe-nav-item" data-page="leads" onclick="SP('leads')"><i class="bi bi-people-fill"></i> All Leads <span class="fe-nav-badge" id="nb-l">0</span></button><button class="fe-nav-item" data-page="my-leads" onclick="SP('my-leads')"><i class="bi bi-person-check-fill"></i> My Leads</button><button class="fe-nav-item" data-page="followups" onclick="SP('followups')"><i class="bi bi-calendar-check-fill"></i> Follow-ups <span class="fe-nav-badge green" id="nb-f">0</span></button><div class="fe-nav-divider"></div><button class="fe-nav-item" data-page="team" onclick="SP('team')" id="nav-team"><i class="bi bi-person-badge-fill"></i> Team</button><button class="fe-nav-item" data-page="settings" onclick="SP('settings')"><i class="bi bi-gear-fill"></i> Settings</button><div class="fe-nav-divider"></div><button class="fe-nav-item" onclick="logout()"><i class="bi bi-box-arrow-left"></i> Logout</button></nav><div class="fe-sidebar-footer"><div class="fe-user-chip"><div class="fe-user-avatar" id="ua">A</div><div class="fe-user-info"><div class="name" id="un">Admin</div><div class="role" id="ur">admin</div></div></div></div></aside>
+<div class="fe-main"><header class="fe-topbar"><div class="fe-topbar-left"><button class="fe-topbar-btn fe-mobile-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')"><i class="bi bi-list"></i></button><h1 id="pt">Dashboard</h1></div><div class="fe-topbar-right"><div class="fe-search-box"><i class="bi bi-search"></i><input placeholder="Search leads..." id="gs" oninput="cS=this.value;RL();RR();"></div><button class="fe-topbar-btn" onclick="toast('Syncing...','info');sync();" title="Sync"><i class="bi bi-arrow-repeat" id="si"></i></button><div style="font-size:.73rem;color:var(--fe-text-muted);display:flex;align-items:center;"><span class="fe-sync-dot live" id="sd"></span><span id="ss">Connecting...</span></div></div></header>
+<div class="fe-content">
+<div class="fe-page active" id="page-dashboard"><div class="fe-stats-grid" id="sg"></div><div class="fe-row"><div class="fe-col-8"><div class="fe-panel"><div class="fe-panel-header"><h3><i class="bi bi-clock-history" style="margin-right:7px;color:var(--fe-red);"></i>Recent Leads</h3><button class="fe-btn fe-btn-sm fe-btn-secondary" onclick="SP('leads')">View All</button></div><div class="fe-panel-body fe-table-wrap"><table class="fe-table"><thead><tr><th>Name</th><th>Phone</th><th>Course</th><th>Stage</th><th>Time</th><th>Actions</th></tr></thead><tbody id="rb"></tbody></table></div></div></div><div class="fe-col-4"><div class="fe-panel" style="margin-bottom:14px;"><div class="fe-panel-header"><h3><i class="bi bi-bell-fill" style="margin-right:7px;color:var(--fe-orange);"></i>Today's Follow-ups</h3></div><div class="fe-panel-body" id="tp" style="padding:14px;"></div></div><div class="fe-panel"><div class="fe-panel-header"><h3><i class="bi bi-exclamation-triangle-fill" style="margin-right:7px;color:#ef4444;"></i>Overdue</h3></div><div class="fe-panel-body" id="op" style="padding:14px;"></div></div></div></div></div>
+<div class="fe-page" id="page-leads"><div class="fe-filters" id="lf"><div class="fe-filter-chip active" onclick="cF='all';AF(this);RL();">All</div><div class="fe-filter-chip" onclick="cF='New';AF(this);RL();">New</div><div class="fe-filter-chip" onclick="cF='Contacted';AF(this);RL();">Contacted</div><div class="fe-filter-chip" onclick="cF='Follow-up';AF(this);RL();">Follow-up</div><div class="fe-filter-chip" onclick="cF='Hot';AF(this);RL();">Hot</div><div class="fe-filter-chip" onclick="cF='Converted';AF(this);RL();">Converted</div><div class="fe-filter-chip" onclick="cF='Lost';AF(this);RL();">Lost</div><div style="margin-left:auto;display:flex;gap:7px;"><select class="fe-input" style="padding:5px 10px;font-size:.76rem;width:auto;" id="ft" onchange="RL()"><option value="">All Tabs</option></select><select class="fe-input" style="padding:5px 10px;font-size:.76rem;width:auto;" id="fa" onchange="RL()"><option value="">All Team</option></select></div></div><div class="fe-panel"><div class="fe-panel-header"><h3>Leads (<span id="lc">0</span>)</h3><button class="fe-btn fe-btn-sm fe-btn-secondary" onclick="EX()"><i class="bi bi-download"></i> Export</button></div><div class="fe-panel-body fe-table-wrap"><table class="fe-table"><thead><tr><th>ID</th><th>Name</th><th>Phone</th><th>Email</th><th>Course</th><th>Source</th><th>Tab</th><th>Stage</th><th>Assigned</th><th>Follow-up</th><th>Actions</th></tr></thead><tbody id="lb"></tbody></table></div><div class="fe-panel-footer"><span style="font-size:.76rem;color:var(--fe-text-muted);" id="lp">0 leads</span></div></div></div>
+<div class="fe-page" id="page-my-leads"><div class="fe-filters"><div class="fe-filter-chip active" onclick="mF='all';AF(this);RM();">All Mine</div><div class="fe-filter-chip" onclick="mF='New';AF(this);RM();">New</div><div class="fe-filter-chip" onclick="mF='Contacted';AF(this);RM();">Contacted</div><div class="fe-filter-chip" onclick="mF='Follow-up';AF(this);RM();">Follow-up</div><div class="fe-filter-chip" onclick="mF='Hot';AF(this);RM();">Hot</div></div><div class="fe-panel"><div class="fe-panel-header"><h3>My Leads (<span id="mc">0</span>)</h3></div><div class="fe-panel-body fe-table-wrap"><table class="fe-table"><thead><tr><th>Name</th><th>Phone</th><th>Course</th><th>Stage</th><th>Priority</th><th>Follow-up</th><th>Actions</th></tr></thead><tbody id="mb"></tbody></table></div></div></div>
+<div class="fe-page" id="page-followups"><div class="fe-tabs"><button class="fe-tab active" onclick="fT='overdue';AT(this);RF();">Overdue</button><button class="fe-tab" onclick="fT='today';AT(this);RF();">Today</button><button class="fe-tab" onclick="fT='upcoming';AT(this);RF();">Upcoming</button><button class="fe-tab" onclick="fT='all';AT(this);RF();">All</button></div><div class="fe-followup-grid" id="fg"></div></div>
+<div class="fe-page" id="page-team"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;"><h3 style="font-size:.95rem;font-weight:700;">Team</h3><button class="fe-btn fe-btn-primary fe-btn-sm" onclick="$('modal-add-member').classList.add('active')"><i class="bi bi-plus-lg"></i> Add</button></div><div class="fe-team-grid" id="tg"></div></div>
+<div class="fe-page" id="page-settings"><div class="fe-panel" style="max-width:580px;"><div class="fe-panel-header"><h3><i class="bi bi-gear-fill" style="margin-right:7px;"></i>Settings</h3></div><div class="fe-panel-body" style="padding:22px;"><div class="fe-input-group"><label>Published CSV URL</label><input type="text" class="fe-input" id="s-csv" value="https://docs.google.com/spreadsheets/d/e/2PACX-1vSKEf5TRAk62zjx1qvb4ZPpu_AmmYO4KsM3Ud-y6aOx-UYNKd_RVMFm_dJcAqieC4sY526l4-N6qI5w/pub?output=csv"><small style="color:var(--fe-text-muted);font-size:.71rem;display:block;margin-top:3px;">Auto-syncs every 30s. No API key needed.</small></div><div class="fe-input-group"><label>Extra CSV URLs (other tabs, one per line)</label><textarea class="fe-input" id="s-extra" rows="3" placeholder="One URL per line for Callback, Loan, etc."></textarea></div><div class="fe-input-group"><label>Sync Interval (seconds)</label><input type="number" class="fe-input" id="s-int" value="30" min="10"></div><div class="fe-input-group"><label>WhatsApp Number</label><input type="text" class="fe-input" id="s-wa" value="919726953698"></div><button class="fe-btn fe-btn-primary" onclick="saveS()"><i class="bi bi-check-lg"></i> Save</button><div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--fe-border);"><button class="fe-btn fe-btn-sm fe-btn-danger" onclick="if(confirm('Reset all?')){localStorage.clear();location.reload();}"><i class="bi bi-trash3"></i> Reset</button></div></div></div></div>
+</div></div></div>
+<div class="fe-drawer-overlay" id="do" onclick="CD()"></div><div class="fe-drawer" id="dd"><div class="fe-drawer-head"><h3 id="dt">Lead</h3><div style="display:flex;gap:7px;"><button class="fe-btn fe-btn-sm fe-btn-whatsapp" id="dw"><i class="bi bi-whatsapp"></i></button><button class="fe-btn fe-btn-sm" style="background:var(--fe-red);color:#fff;" id="dc"><i class="bi bi-telephone-fill"></i></button><button class="fe-btn fe-btn-sm fe-btn-secondary" onclick="CD()"><i class="bi bi-x-lg"></i></button></div></div><div class="fe-drawer-body" id="db"></div></div>
+<div class="fe-modal-overlay" id="modal-add-member"><div class="fe-modal"><div class="fe-modal-head"><h3>Add Member</h3><button class="fe-btn fe-btn-icon fe-btn-ghost" onclick="$('modal-add-member').classList.remove('active')"><i class="bi bi-x-lg"></i></button></div><div class="fe-modal-body"><div class="fe-input-group"><label>Name</label><input class="fe-input" id="mn"></div><div class="fe-input-group"><label>Email</label><input class="fe-input" id="me"></div><div class="fe-input-group"><label>Password</label><input type="password" class="fe-input" id="mp"></div><div class="fe-input-group"><label>Role</label><select class="fe-input" id="mr"><option value="counsellor">Counsellor</option><option value="admin">Admin</option></select></div></div><div class="fe-modal-foot"><button class="fe-btn fe-btn-secondary" onclick="$('modal-add-member').classList.remove('active')">Cancel</button><button class="fe-btn fe-btn-primary" onclick="addMem()">Add</button></div></div></div>
+<div class="fe-modal-overlay" id="modal-assign"><div class="fe-modal"><div class="fe-modal-head"><h3>Assign Lead</h3><button class="fe-btn fe-btn-icon fe-btn-ghost" onclick="$('modal-assign').classList.remove('active')"><i class="bi bi-x-lg"></i></button></div><div class="fe-modal-body"><div class="fe-input-group"><label>Assign To</label><select class="fe-input" id="as"></select></div></div><div class="fe-modal-foot"><button class="fe-btn fe-btn-secondary" onclick="$('modal-assign').classList.remove('active')">Cancel</button><button class="fe-btn fe-btn-primary" onclick="doAssign()">Assign</button></div></div></div>
+<div class="fe-toast-container" id="tc"></div>
+<script>
+const K={u:'fe3_u',c:'fe3_c',s:'fe3_s',cu:'fe3_cu',l:'fe3_l'};
+const DU=[{id:'u1',name:'Admin',email:'admin@futeducation.com',password:'admin123',role:'admin'},{id:'u2',name:'Priya Sharma',email:'priya@futeducation.com',password:'priya123',role:'counsellor'},{id:'u3',name:'Rahul Verma',email:'rahul@futeducation.com',password:'rahul123',role:'counsellor'}];
+const $=id=>document.getElementById(id);
+function S(k,v){if(v===undefined){const d=localStorage.getItem(k);return d?JSON.parse(d):null;}localStorage.setItem(k,JSON.stringify(v));}
+function GU(){return S(K.u)||DU;}function SU(v){S(K.u,v);}function GC(){return S(K.c)||{};}function SC(v){S(K.c,v);}function GS(){return S(K.s)||{csv:'https://docs.google.com/spreadsheets/d/e/2PACX-1vSKEf5TRAk62zjx1qvb4ZPpu_AmmYO4KsM3Ud-y6aOx-UYNKd_RVMFm_dJcAqieC4sY526l4-N6qI5w/pub?output=csv',extra:'',si:30,wa:'919726953698'};}function SS(v){S(K.s,v);}function CU(){return S(K.cu);}function SCU(v){S(K.cu,v);}function GL(){return S(K.l)||[];}function SL(v){S(K.l,v);}
+function toast(m,t='info'){const e=document.createElement('div');e.className=`fe-toast ${t}`;e.innerHTML=`<i class="bi bi-${t==='success'?'check-circle-fill':t==='error'?'exclamation-circle-fill':'info-circle-fill'}"></i> ${m}`;$('tc').appendChild(e);setTimeout(()=>e.remove(),4000);}
+function fd(d){if(!d)return'—';const x=new Date(d);return isNaN(x)?d:x.toLocaleDateString('en-IN',{day:'2-digit',month:'short'});}
+function iT(d){return d&&d.startsWith(new Date().toISOString().split('T')[0]);}
+function iO(d){return d&&d<new Date().toISOString().split('T')[0];}
+function ta(t){if(!t)return'—';const d=Date.now()-new Date(t).getTime();if(isNaN(d))return t;const m=Math.floor(d/60000);if(m<1)return'Now';if(m<60)return m+'m';const h=Math.floor(m/60);return h<24?h+'h':Math.floor(h/24)+'d';}
+function pCSV(t){const ls=t.split(/\r?\n/),r=[];let p='';for(const l of ls){p+=(p?'\n':'')+l;if((p.match(/"/g)||[]).length%2===0){r.push(p);p='';}}if(p)r.push(p);return r.map(row=>{const c=[];let s='',q=false;for(let i=0;i<row.length;i++){const ch=row[i];if(ch==='"'){if(q&&row[i+1]==='"'){s+='"';i++;}else q=!q;}else if(ch===','&&!q){c.push(s.trim());s='';}else s+=ch;}c.push(s.trim());return c;});}
+let A=[],cF='all',mF='all',cS='',aLid=null,sT=null,fT='overdue';
+function handleLogin(){const e=$('login-email').value.trim(),p=$('login-pass').value;const u=GU().find(x=>x.email===e&&x.password===p);if(!u){toast('Invalid','error');return;}SCU(u);show();}
+function logout(){localStorage.removeItem(K.cu);$('app-shell').classList.remove('active');$('login-screen').style.display='flex';if(sT)clearInterval(sT);}
+function show(){const u=CU();if(!u)return;$('login-screen').style.display='none';$('app-shell').classList.add('active');$('un').textContent=u.name;$('ur').textContent=u.role;$('ua').textContent=u.name[0];if(u.role!=='admin')$('nav-team').style.display='none';init();}
+function init(){A=GL();const c=GC();A.forEach(l=>{if(!c[l.lead_id])c[l.lead_id]={assigned_to:'',lead_stage:'New',followup_date:'',followup_time:'',last_contacted_date:'',call_status:'',lead_response:'',priority:'Warm',remarks:'',communication_history:[],conversion_amount:'',conversion_course:'',admission_status:''};});SC(c);PF();RA();startSync();}
+function startSync(){const s=GS();if(sT)clearInterval(sT);sT=setInterval(sync,(s.si||30)*1000);sync();}
+async function sync(){const s=GS();const urls=[s.csv,...(s.extra||'').split('\n').map(u=>u.trim()).filter(Boolean)];$('si').style.animation='spin 1s linear infinite';$('ss').textContent='Syncing...';let all=[],ok=0;
+for(let i=0;i<urls.length;i++){const url=urls[i];if(!url)continue;try{const r=await fetch(url);if(!r.ok)throw 0;const t=await r.text();const rows=pCSV(t);if(rows.length<2)continue;const h=rows[0].map(x=>x.toLowerCase().replace(/\s+/g,'_'));for(let j=1;j<rows.length;j++){const o={_tab:i===0?'Primary':'Tab-'+i};h.forEach((k,idx)=>{o[k]=(rows[j][idx]||'').trim();});if(o.lead_id||o.name||o.phone){if(!o.lead_id)o.lead_id='L'+j+'-'+Date.now();all.push(o);}}ok++;}catch(e){console.warn('Sync err:',e);}}
+$('si').style.animation='';
+if(all.length>0){SL(all);A=all;const c=GC();let n=0;all.forEach(l=>{if(!c[l.lead_id]){c[l.lead_id]={assigned_to:'',lead_stage:'New',followup_date:'',followup_time:'',last_contacted_date:'',call_status:'',lead_response:'',priority:'Warm',remarks:'',communication_history:[],conversion_amount:'',conversion_course:'',admission_status:''};n++;}});SC(c);if(n)toast(n+' new lead(s)!','success');PF();RA();$('ss').textContent='Live · '+all.length;$('sd').className='fe-sync-dot live';}else{A=GL();RA();$('ss').textContent=ok?'Live · 0':'Error';$('sd').className=ok?'fe-sync-dot live':'fe-sync-dot off';}}
+function SP(p){document.querySelectorAll('.fe-page').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.fe-nav-item').forEach(x=>x.classList.remove('active'));const e=$('page-'+p);if(e)e.classList.add('active');const n=document.querySelector(`[data-page="${p}"]`);if(n)n.classList.add('active');$('pt').textContent={dashboard:'Dashboard',leads:'All Leads','my-leads':'My Leads',followups:'Follow-ups',team:'Team',settings:'Settings'}[p]||'';$('sidebar').classList.remove('open');if(p==='team')RT();if(p==='settings')loadS();}
+function RA(){RS();RR();RDF();RL();RM();RF();UB();}
+function RS(){const c=GC();let t=A.length,n=0,a=0,ft=0,od=0,h=0,cv=0,lo=0;A.forEach(l=>{const x=c[l.lead_id]||{};if(x.lead_stage==='New')n++;if(x.assigned_to)a++;if(x.followup_date&&iT(x.followup_date))ft++;if(x.followup_date&&iO(x.followup_date)&&x.lead_stage!=='Converted'&&x.lead_stage!=='Lost')od++;if(x.lead_stage==='Hot'||x.priority==='Hot')h++;if(x.lead_stage==='Converted')cv++;if(x.lead_stage==='Lost')lo++;});$('sg').innerHTML=`<div class="fe-stat-card total"><div class="fe-stat-icon"><i class="bi bi-people-fill"></i></div><div class="fe-stat-num">${t}</div><div class="fe-stat-label">Total</div></div><div class="fe-stat-card new"><div class="fe-stat-icon"><i class="bi bi-plus-circle-fill"></i></div><div class="fe-stat-num">${n}</div><div class="fe-stat-label">New</div></div><div class="fe-stat-card assigned"><div class="fe-stat-icon"><i class="bi bi-person-check-fill"></i></div><div class="fe-stat-num">${a}</div><div class="fe-stat-label">Assigned</div></div><div class="fe-stat-card followup"><div class="fe-stat-icon"><i class="bi bi-calendar-check-fill"></i></div><div class="fe-stat-num">${ft}</div><div class="fe-stat-label">Today F/U</div></div><div class="fe-stat-card overdue"><div class="fe-stat-icon"><i class="bi bi-exclamation-triangle-fill"></i></div><div class="fe-stat-num">${od}</div><div class="fe-stat-label">Overdue</div></div><div class="fe-stat-card hot"><div class="fe-stat-icon"><i class="bi bi-fire"></i></div><div class="fe-stat-num">${h}</div><div class="fe-stat-label">Hot</div></div><div class="fe-stat-card converted"><div class="fe-stat-icon"><i class="bi bi-check-circle-fill"></i></div><div class="fe-stat-num">${cv}</div><div class="fe-stat-label">Converted</div></div><div class="fe-stat-card lost"><div class="fe-stat-icon"><i class="bi bi-x-circle-fill"></i></div><div class="fe-stat-num">${lo}</div><div class="fe-stat-label">Lost</div></div>`;}
+function UB(){$('nb-l').textContent=A.length;const c=GC();let f=0;A.forEach(l=>{const x=c[l.lead_id]||{};if(x.followup_date&&(iT(x.followup_date)||iO(x.followup_date))&&x.lead_stage!=='Converted'&&x.lead_stage!=='Lost')f++;});$('nb-f').textContent=f;}
+function RR(){const c=GC(),s=[...A].sort((a,b)=>new Date(b.timestamp||0)-new Date(a.timestamp||0)).slice(0,8),tb=$('rb');if(!s.length){tb.innerHTML='<tr><td colspan="6" style="text-align:center;padding:36px;color:var(--fe-text-muted);"><i class="bi bi-inbox" style="font-size:2rem;display:block;margin-bottom:8px;opacity:.3;"></i>No leads yet. They auto-sync from your sheet.</td></tr>';return;}tb.innerHTML=s.map(l=>{const x=c[l.lead_id]||{};return`<tr><td><strong style="cursor:pointer" onclick="OD('${l.lead_id}')">${l.name||'—'}</strong></td><td>${l.phone||'—'}</td><td>${l.course||l.subject||'—'}</td><td>${SB(x.lead_stage)}</td><td style="color:var(--fe-text-muted);font-size:.72rem;">${ta(l.timestamp)}</td><td><div class="fe-actions"><button class="fe-btn fe-btn-xs fe-btn-ghost" onclick="OD('${l.lead_id}')"><i class="bi bi-eye"></i></button><a href="tel:${l.phone}" class="fe-btn fe-btn-xs fe-btn-ghost"><i class="bi bi-telephone"></i></a><button class="fe-btn fe-btn-xs fe-btn-ghost" onclick="WA('${l.lead_id}')" style="color:#25d366;"><i class="bi bi-whatsapp"></i></button></div></td></tr>`;}).join('');}
+function RDF(){const c=GC(),td=[],od=[];A.forEach(l=>{const x=c[l.lead_id]||{};if(!x.followup_date||x.lead_stage==='Converted'||x.lead_stage==='Lost')return;if(iT(x.followup_date))td.push({...l,c:x});else if(iO(x.followup_date))od.push({...l,c:x});});$('tp').innerHTML=!td.length?'<p style="font-size:.82rem;color:var(--fe-text-muted);text-align:center;padding:10px;">None today</p>':td.slice(0,5).map(l=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--fe-border);cursor:pointer;" onclick="OD('${l.lead_id}')"><div><strong style="font-size:.82rem;color:var(--fe-heading);">${l.name}</strong><br><span style="font-size:.7rem;color:var(--fe-text-muted);">${l.course||''}</span></div><button class="fe-btn fe-btn-xs fe-btn-whatsapp" onclick="event.stopPropagation();WA('${l.lead_id}')"><i class="bi bi-whatsapp"></i></button></div>`).join('');$('op').innerHTML=!od.length?'<p style="font-size:.82rem;color:var(--fe-text-muted);text-align:center;padding:10px;">All clear!</p>':od.slice(0,5).map(l=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--fe-border);cursor:pointer;" onclick="OD('${l.lead_id}')"><div><strong style="font-size:.82rem;">${l.name}</strong><br><span style="font-size:.7rem;color:#ef4444;">${fd(l.c.followup_date)}</span></div><span class="fe-badge fe-badge-overdue">Overdue</span></div>`).join('');}
+function RL(){const c=GC(),u=CU();let f=[...A];if(cS){const s=cS.toLowerCase();f=f.filter(l=>(l.name||'').toLowerCase().includes(s)||(l.phone||'').includes(s)||(l.lead_id||'').toLowerCase().includes(s)||(l.email||'').toLowerCase().includes(s));}if(cF!=='all')f=f.filter(l=>(c[l.lead_id]||{}).lead_stage===cF);const tv=$('ft')?.value;if(tv)f=f.filter(l=>l._tab===tv);const av=$('fa')?.value;if(av)f=f.filter(l=>(c[l.lead_id]||{}).assigned_to===av);if(u.role!=='admin')f=f.filter(l=>(c[l.lead_id]||{}).assigned_to===u.name);f.sort((a,b)=>new Date(b.timestamp||0)-new Date(a.timestamp||0));$('lc').textContent=f.length;$('lp').textContent=f.length+' leads';const tb=$('lb');if(!f.length){tb.innerHTML=`<tr><td colspan="11" style="text-align:center;padding:36px;color:var(--fe-text-muted);">${A.length?'No match.':'No leads yet.'}</td></tr>`;return;}tb.innerHTML=f.map(l=>{const x=c[l.lead_id]||{};return`<tr><td style="font-size:.72rem;color:var(--fe-text-muted);">${l.lead_id||'—'}</td><td><strong style="cursor:pointer" onclick="OD('${l.lead_id}')">${l.name||'—'}</strong></td><td>${l.phone||'—'}</td><td style="font-size:.76rem;">${l.email||'—'}</td><td>${l.course||l.subject||'—'}</td><td style="font-size:.76rem;">${l.source||'—'}</td><td><span class="fe-badge fe-badge-tab">${l._tab||'—'}</span></td><td>${SB(x.lead_stage)}</td><td style="font-size:.76rem;">${x.assigned_to||'—'}</td><td style="font-size:.76rem;">${x.followup_date?fd(x.followup_date):'—'}</td><td><div class="fe-actions"><button class="fe-btn fe-btn-xs fe-btn-ghost" onclick="OD('${l.lead_id}')"><i class="bi bi-eye"></i></button><a href="tel:${l.phone}" class="fe-btn fe-btn-xs fe-btn-ghost"><i class="bi bi-telephone"></i></a><button class="fe-btn fe-btn-xs fe-btn-ghost" onclick="WA('${l.lead_id}')" style="color:#25d366;"><i class="bi bi-whatsapp"></i></button>${u.role==='admin'?`<button class="fe-btn fe-btn-xs fe-btn-ghost" onclick="OA('${l.lead_id}')"><i class="bi bi-person-plus"></i></button>`:''}</div></td></tr>`;}).join('');}
+function AF(el){el.parentElement.querySelectorAll('.fe-filter-chip').forEach(x=>x.classList.remove('active'));el.classList.add('active');}
+function AT(el){el.parentElement.querySelectorAll('.fe-tab').forEach(x=>x.classList.remove('active'));el.classList.add('active');}
+function PF(){const u=GU();$('fa').innerHTML='<option value="">All Team</option>'+u.map(x=>`<option value="${x.name}">${x.name}</option>`).join('');const tabs=[...new Set(A.map(l=>l._tab).filter(Boolean))];$('ft').innerHTML='<option value="">All Tabs</option>'+tabs.map(t=>`<option value="${t}">${t}</option>`).join('');}
+function RM(){const c=GC(),u=CU();let f=A.filter(l=>(c[l.lead_id]||{}).assigned_to===u.name);if(mF!=='all')f=f.filter(l=>(c[l.lead_id]||{}).lead_stage===mF);$('mc').textContent=f.length;const tb=$('mb');if(!f.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:36px;color:var(--fe-text-muted);">None assigned</td></tr>';return;}tb.innerHTML=f.map(l=>{const x=c[l.lead_id]||{};return`<tr><td><strong style="cursor:pointer" onclick="OD('${l.lead_id}')">${l.name||'—'}</strong></td><td>${l.phone||'—'}</td><td>${l.course||l.subject||'—'}</td><td>${SB(x.lead_stage)}</td><td>${PB(x.priority)}</td><td style="font-size:.76rem;">${x.followup_date?fd(x.followup_date):'—'}</td><td><div class="fe-actions"><button class="fe-btn fe-btn-xs fe-btn-ghost" onclick="OD('${l.lead_id}')"><i class="bi bi-eye"></i></button><a href="tel:${l.phone}" class="fe-btn fe-btn-xs fe-btn-ghost"><i class="bi bi-telephone"></i></a><button class="fe-btn fe-btn-xs fe-btn-ghost" onclick="WA('${l.lead_id}')" style="color:#25d366;"><i class="bi bi-whatsapp"></i></button></div></td></tr>`;}).join('');}
+function RF(){const c=GC(),g=$('fg');let it=[];A.forEach(l=>{const x=c[l.lead_id]||{};if(!x.followup_date||x.lead_stage==='Converted'||x.lead_stage==='Lost')return;let tp='upcoming';if(iT(x.followup_date))tp='today';else if(iO(x.followup_date))tp='overdue';it.push({...l,c:x,type:tp});});if(fT!=='all')it=it.filter(i=>i.type===fT);it.sort((a,b)=>new Date(a.c.followup_date)-new Date(b.c.followup_date));if(!it.length){g.innerHTML='<div class="fe-empty" style="grid-column:1/-1;"><i class="bi bi-calendar-check"></i><p>None</p></div>';return;}g.innerHTML=it.map(l=>`<div class="fe-followup-card ${l.type}" onclick="OD('${l.lead_id}')"><div style="display:flex;justify-content:space-between;"><div><div class="fe-followup-name">${l.name}</div><div class="fe-followup-meta">${l.course||''} · ${l.phone}</div></div>${l.type==='overdue'?'<span class="fe-badge fe-badge-overdue">Overdue</span>':l.type==='today'?'<span class="fe-badge fe-badge-new">Today</span>':'<span class="fe-badge fe-badge-contacted">Soon</span>'}</div><div class="fe-followup-time"><i class="bi bi-calendar3"></i> ${fd(l.c.followup_date)} ${l.c.followup_time?'· '+l.c.followup_time:''}</div><div class="fe-quick-actions"><a href="tel:${l.phone}" class="fe-btn fe-btn-xs fe-btn-secondary" onclick="event.stopPropagation();"><i class="bi bi-telephone"></i></a><button class="fe-btn fe-btn-xs fe-btn-whatsapp" onclick="event.stopPropagation();WA('${l.lead_id}')"><i class="bi bi-whatsapp"></i></button></div></div>`).join('');}
+function RT(){const u=GU(),c=GC(),g=$('tg');const cl=['var(--fe-red)','#14b8a6','var(--fe-blue)','var(--fe-purple)','var(--fe-pink)'];g.innerHTML=u.map((x,i)=>{let a=0,cv=0;A.forEach(l=>{const z=c[l.lead_id]||{};if(z.assigned_to===x.name){a++;if(z.lead_stage==='Converted')cv++;}});return`<div class="fe-team-card"><div class="fe-team-avatar" style="background:${cl[i%cl.length]};">${x.name[0]}</div><div class="fe-team-name">${x.name}</div><div class="fe-team-role">${x.role}</div><div class="fe-team-stats"><div><span class="stat-val">${a}</span><span class="stat-lbl">Leads</span></div><div><span class="stat-val">${cv}</span><span class="stat-lbl">Conv.</span></div></div>${CU().role==='admin'&&x.role!=='admin'?`<button class="fe-btn fe-btn-xs fe-btn-danger" style="margin-top:10px;" onclick="SU(GU().filter(u=>u.id!=='${x.id}'));RT();toast('Removed','success');"><i class="bi bi-trash3"></i> Remove</button>`:''}</div>`;}).join('');}
+function addMem(){const n=$('mn').value.trim(),e=$('me').value.trim(),p=$('mp').value,r=$('mr').value;if(!n||!e||!p){toast('Fill all','error');return;}const u=GU();if(u.find(x=>x.email===e)){toast('Exists','error');return;}u.push({id:'u'+Date.now(),name:n,email:e,password:p,role:r});SU(u);$('modal-add-member').classList.remove('active');RT();PF();toast(n+' added','success');}
+function OA(lid){aLid=lid;const u=GU(),s=$('as');s.innerHTML='<option value="">Unassigned</option>'+u.map(x=>`<option value="${x.name}">${x.name}</option>`).join('');s.value=(GC()[lid]||{}).assigned_to||'';$('modal-assign').classList.add('active');}
+function doAssign(){const v=$('as').value,c=GC();if(!c[aLid])return;c[aLid].assigned_to=v;c[aLid].communication_history.push({time:new Date().toISOString(),event:v?'Assigned → '+v:'Unassigned'});SC(c);$('modal-assign').classList.remove('active');RA();toast(v?'Assigned to '+v:'Unassigned','success');}
+function OD(lid){const l=A.find(x=>x.lead_id===lid);if(!l)return;const c=GC(),x=c[lid]||{};$('dt').textContent=l.name||lid;$('dw').onclick=()=>WA(lid);$('dc').onclick=()=>window.open('tel:'+l.phone);$('db').innerHTML=`<div class="fe-drawer-section"><h4>Lead Info (${l._tab||'Sheet'})</h4><div class="fe-detail-grid"><div class="fe-detail-item"><label>ID</label><div class="val">${l.lead_id}</div></div><div class="fe-detail-item"><label>Time</label><div class="val">${l.timestamp||'—'}</div></div><div class="fe-detail-item"><label>Name</label><div class="val">${l.name||'—'}</div></div><div class="fe-detail-item"><label>Phone</label><div class="val"><a href="tel:${l.phone}">${l.phone||'—'}</a></div></div><div class="fe-detail-item"><label>Email</label><div class="val">${l.email||'—'}</div></div><div class="fe-detail-item"><label>Course</label><div class="val">${l.course||'—'}</div></div><div class="fe-detail-item"><label>Subject</label><div class="val">${l.subject||'—'}</div></div><div class="fe-detail-item"><label>Source</label><div class="val">${l.source||'—'}</div></div><div class="fe-detail-item full"><label>Message</label><div class="val">${l.message||'—'}</div></div></div></div><div class="fe-drawer-section"><h4>CRM</h4><div class="fe-detail-grid"><div class="fe-detail-item"><label>Stage</label><select class="fe-input" onchange="UC('${lid}','lead_stage',this.value)" style="padding:7px 10px;font-size:.8rem;">${['New','Contacted','Follow-up','Hot','Converted','Lost'].map(s=>`<option ${x.lead_stage===s?'selected':''}>${s}</option>`).join('')}</select></div><div class="fe-detail-item"><label>Priority</label><select class="fe-input" onchange="UC('${lid}','priority',this.value)" style="padding:7px 10px;font-size:.8rem;">${['Hot','Warm','Cold'].map(p=>`<option ${x.priority===p?'selected':''}>${p}</option>`).join('')}</select></div><div class="fe-detail-item"><label>Assigned</label><select class="fe-input" onchange="UC('${lid}','assigned_to',this.value)" style="padding:7px 10px;font-size:.8rem;"><option value="">—</option>${GU().map(u=>`<option value="${u.name}" ${x.assigned_to===u.name?'selected':''}>${u.name}</option>`).join('')}</select></div><div class="fe-detail-item"><label>Call</label><select class="fe-input" onchange="UC('${lid}','call_status',this.value)" style="padding:7px 10px;font-size:.8rem;"><option value="">—</option>${['Connected','Not Picked','Switched Off','Invalid'].map(s=>`<option ${x.call_status===s?'selected':''}>${s}</option>`).join('')}</select></div><div class="fe-detail-item"><label>Response</label><select class="fe-input" onchange="UC('${lid}','lead_response',this.value)" style="padding:7px 10px;font-size:.8rem;"><option value="">—</option>${['Interested','Not Interested','Will Decide','Asked Fees','Asked Callback'].map(s=>`<option ${x.lead_response===s?'selected':''}>${s}</option>`).join('')}</select></div><div class="fe-detail-item"><label>F/U Date</label><input type="date" class="fe-input" value="${x.followup_date||''}" onchange="UC('${lid}','followup_date',this.value)" style="padding:7px 10px;font-size:.8rem;"></div><div class="fe-detail-item"><label>F/U Time</label><input type="time" class="fe-input" value="${x.followup_time||''}" onchange="UC('${lid}','followup_time',this.value)" style="padding:7px 10px;font-size:.8rem;"></div><div class="fe-detail-item"><label>Last Contact</label><input type="date" class="fe-input" value="${x.last_contacted_date||''}" onchange="UC('${lid}','last_contacted_date',this.value)" style="padding:7px 10px;font-size:.8rem;"></div></div></div><div class="fe-drawer-section"><h4>Notes</h4><div style="display:flex;gap:7px;"><textarea class="fe-input" id="dn" placeholder="Add note..." style="flex:1;min-height:50px;"></textarea><button class="fe-btn fe-btn-primary fe-btn-sm" onclick="AN('${lid}')" style="align-self:flex-end;"><i class="bi bi-plus"></i></button></div>${x.remarks?`<div style="margin-top:8px;padding:8px;background:var(--fe-bg);border-radius:6px;font-size:.8rem;"><b>Last:</b> ${x.remarks}</div>`:''}</div><div class="fe-drawer-section"><h4>Timeline</h4>${x.communication_history?.length?`<div class="fe-timeline">${x.communication_history.slice().reverse().slice(0,10).map(h=>`<div class="fe-timeline-item"><div class="time">${fd(h.time)}</div><div class="event">${h.event}</div></div>`).join('')}</div>`:'<p style="font-size:.8rem;color:var(--fe-text-muted);">No activity</p>'}</div><div class="fe-quick-actions" style="padding-top:14px;border-top:1px solid var(--fe-border);"><a href="tel:${l.phone}" class="fe-btn fe-btn-sm" style="background:var(--fe-red);color:#fff;"><i class="bi bi-telephone-fill"></i> Call</a><button class="fe-btn fe-btn-sm fe-btn-whatsapp" onclick="WA('${lid}')"><i class="bi bi-whatsapp"></i> WhatsApp</button><button class="fe-btn fe-btn-sm fe-btn-secondary" onclick="MC('${lid}')"><i class="bi bi-check2"></i> Contacted</button></div>`;$('do').classList.add('active');$('dd').classList.add('open');}
+function CD(){$('do').classList.remove('active');$('dd').classList.remove('open');}
+function UC(lid,f,v){const c=GC();if(!c[lid])return;c[lid][f]=v;c[lid].communication_history.push({time:new Date().toISOString(),event:f.replace(/_/g,' ')+' → '+v});SC(c);RA();}
+function AN(lid){const n=$('dn').value.trim();if(!n)return;const c=GC();c[lid].remarks=n;c[lid].communication_history.push({time:new Date().toISOString(),event:'Note: '+n});SC(c);$('dn').value='';OD(lid);toast('Saved','success');}
+function MC(lid){const c=GC();c[lid].lead_stage='Contacted';c[lid].last_contacted_date=new Date().toISOString().split('T')[0];c[lid].communication_history.push({time:new Date().toISOString(),event:'Contacted'});SC(c);OD(lid);RA();toast('Done','success');}
+function WA(lid){const l=A.find(x=>x.lead_id===lid);if(!l)return;const s=GS(),ph=l.phone?(l.phone.startsWith('91')?l.phone:'91'+l.phone):s.wa;window.open(`https://wa.me/${ph}?text=${encodeURIComponent(`Dear ${l.name||'Student'},\n\nThank you for contacting Future Education.\n\nLead Reference ID: ${l.lead_id}`)}`,'_blank');}
+function SB(s){const m={New:'new',Contacted:'contacted','Follow-up':'followup',Hot:'hot',Converted:'converted',Lost:'lost'};return`<span class="fe-badge fe-badge-${m[s]||'new'}">${s||'New'}</span>`;}
+function PB(p){const m={Hot:'hot',Warm:'warm',Cold:'cold'};return`<span class="fe-badge fe-badge-${m[p]||'warm'}">${p||'Warm'}</span>`;}
+function loadS(){const s=GS();$('s-csv').value=s.csv||'';$('s-extra').value=s.extra||'';$('s-int').value=s.si||30;$('s-wa').value=s.wa||'';}
+function saveS(){SS({csv:$('s-csv').value.trim(),extra:$('s-extra').value.trim(),si:parseInt($('s-int').value)||30,wa:$('s-wa').value.trim()});startSync();toast('Saved!','success');}
+function EX(){const c=GC(),r=[['ID','Time','Name','Email','Phone','Course','Subject','Source','Tab','Stage','Assigned','Priority','Follow-up','Call','Response','Remarks']];A.forEach(l=>{const x=c[l.lead_id]||{};r.push([l.lead_id,l.timestamp,l.name,l.email,l.phone,l.course,l.subject,l.source,l._tab,x.lead_stage,x.assigned_to,x.priority,x.followup_date,x.call_status,x.lead_response,x.remarks]);});const csv=r.map(x=>x.map(v=>`"${(v||'').replace(/"/g,'""')}"`).join(',')).join('\n');const b=new Blob([csv],{type:'text/csv'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='FE_Leads_'+new Date().toISOString().split('T')[0]+'.csv';a.click();URL.revokeObjectURL(u);toast('Exported','success');}
+window.addEventListener('DOMContentLoaded',()=>{if(!S(K.u))SU(DU);if(CU())show();});
+</script>
+</body>
+</html>
